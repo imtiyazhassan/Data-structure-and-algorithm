@@ -82,32 +82,61 @@ void delete_node(int position)
     }
 }
 
-
-
-/*int main ()
+void insert_at_sorted(int value)
 {
-    head = NULL;
-    insert_at_first(1);
-    insert_at_first(2);
-    print();
-    insert_at_last(4);
-    insert_at_last(5);
-    print();
+    struct node* temp1;
+    temp1 = (struct node*)malloc(sizeof(struct node));
+    temp1->data = value;
 
+    if(head == NULL || temp1->data < head->data)
+    {
+        temp1->link = head;
+        head = temp1;
+    }
+    else
+    {
+        struct node* prev = head;
+        struct node* Forward;
+        Forward = prev->link;
+        while(Forward!=NULL && temp1->data > Forward->data)
+        {
+            prev = Forward;
+            Forward = Forward->link;
+        }
+        prev->link = temp1;
+        temp1->link = Forward;
+    }
+
+}
+
+int search_element(struct node*head, int key)
+{
+    while(head != NULL)
+    {
+        if(head->data == key)
+        {
+            return 1;
+        }
+        head = head->link;
+    }
     return 0;
-}*/
+}
+
+
 
 int main ()
 {
     head = NULL;
     while(1)
     {
-        int n,op,position;
+        int n,op,position,value;
         printf("1. Inset node at first\n");
         printf("2. Inset node at last\n");
         printf("3. print the list\n");
         printf("4. Delete Node\n");
-        printf("5. Break\n");
+        printf("5. Sorted linked list\n");
+        printf("6. search element\n");
+        printf("7. Break\n");
 
 
         scanf("%d",&op);
@@ -132,7 +161,28 @@ int main ()
             delete_node(position);
 
         }
-        if (op ==5)
+        /*if(op == 5)
+        {
+            scanf("%d",&n);
+            insert_at_sorted(n)
+        }*/
+
+        if(op == 6)
+        {
+            int key,result;
+            printf("The element you want to search\n");
+            scanf("%d",&key);
+
+            result = search_element(head, key);
+
+            if(result)
+                printf("%d found \n",key);
+            else
+                printf("Not found\n");
+
+        }
+
+        if (op ==7)
         {
             break;
         }
