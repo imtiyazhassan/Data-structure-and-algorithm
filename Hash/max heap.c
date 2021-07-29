@@ -13,9 +13,7 @@ void display(int arr[],int n)
 void insert(int arr[],int n)
 {
     int temp, i = n;
-    ///printf("i = %d\n",i);
     temp = arr[i];
-
     while(i>1 && temp > arr[i/2])
     {
         arr[i] = arr[i/2];
@@ -27,7 +25,6 @@ void insert(int arr[],int n)
 int main()
 {
     int i,n;
-    ///int arr[100];
     printf("Enter the element of array\n");
     scanf("%d",&n);
     int arr[n];
@@ -52,6 +49,7 @@ int main()
     }*/
 
     display(arr,n);
+
     printf("\n");
     return 0;
 }
